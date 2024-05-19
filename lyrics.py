@@ -1,10 +1,11 @@
 #Imports
 import streamlit as st
 import pandas as pd 
-import numpy as np 
-import seaborn as sns 
+import numpy 
+import seaborn
 import os
 from lyricsgenius import Genius
+import nltk
 
 #Master list of beyonces songs, does not include Cowboy Carter
 Master_Bey_List = pd.read_csv('beyonce_tracks.csv')
@@ -13,6 +14,9 @@ print(Master_Bey_List.head())
 #Genius API Access token found and APi defined
 genius_token = os.getenv('GENIUS_ACCESS_TOKEN')
 genius = Genius(genius_token)
+
+#Download for pre-trained models
+nltk.download('all')
 
 #Function to find lyrics from the Beyonce tracklist
 def get_lyrics(artist,song):
