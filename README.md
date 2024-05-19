@@ -9,7 +9,7 @@ This is the Beyonce project, growing every now and then. The overall project tak
 
 ## PATHWAY
 ### Step 1: Data Preparation
-Acquire Lyrics: You'll need to fetch the lyrics for each track. You can use APIs like Genius API, which requires you to register for an API key. You'll use the track_name and artist_name from your dataset to query the API and retrieve lyrics.\n
+Acquire Lyrics: You'll need to fetch the lyrics for each track. You can use APIs like Genius API, which requires you to register for an API key. You'll use the track_name and artist_name from your dataset to query the API and retrieve lyrics.  
 Data Cleaning: Clean the lyrics data by removing non-lyrical content (e.g., [Chorus] or [Verse] annotations), special characters, and any HTML tags if the lyrics are scraped from the web.
 ### Step 2: Sentiment Analysis
 Choose a Tool: Select a sentiment analysis tool. For Python, libraries like NLTK with VADER (Valence Aware Dictionary and sEntiment Reasoner) or TextBlob are popular for their simplicity and effectiveness in handling social media text types.
