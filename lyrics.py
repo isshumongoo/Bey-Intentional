@@ -27,6 +27,10 @@ def get_lyrics(artist,song):
     except Exception as e:
         return "Error occured finding song lyrics"
             
+#Add lyrics to dataset and create a new file for them. 
 if not os.path.isfile('beyonce_tracks_with_lyrics.csv'):
     Master_Bey_List['lyrics'] = Master_Bey_List.apply(lambda row: get_lyrics(row['artist_name'], row['track_name']), axis=1)
     Master_Bey_List.to_csv('beyonce_tracks_with_lyrics.csv', index=False)
+
+#Variable referencing new dataset
+Lyric_List = pd.read_csv('beyonce_tracks_with_lyrics.csv')
