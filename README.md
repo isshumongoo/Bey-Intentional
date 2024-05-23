@@ -4,7 +4,7 @@ This is the Beyonce project, growing every now and then. The overall project tak
 ## IDEAS FOR FEATURES
 1. Allow users to add their own interpretations of the song onto a bulletin board
 2. Beyonce song mood suggester? Looks at aspects of the song from the csv file and reviews, GenAI could be useful in this part
-3. Snippet of the song for the user to listen to
+3. Snippet of the song for the user to listen to, use Spotify API maybe?
 4. Display the Album Cover of the song
 
 ## PATHWAY
