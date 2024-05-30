@@ -6,6 +6,7 @@ import seaborn
 import os
 from lyricsgenius import Genius
 import nltk
+import google.generativeai as genai
 
 #Master list of beyonces songs, does not include Cowboy Carter
 Master_Bey_List = pd.read_csv('beyonce_tracks.csv')
@@ -15,8 +16,10 @@ print(Master_Bey_List.head())
 genius_token = os.getenv('GENIUS_ACCESS_TOKEN')
 genius = Genius(genius_token)
 
-#Download for pre-trained models
-nltk.download('all')
+#Establishing Gemini GenAI
+genai_api_key = os.getenv('GOOGLE_API_KEY')
+genai.configure(api_key=genai_api_key)
+lyric_model = genai.GenerativeModel('gemini-pro')
 
 #Function to find lyrics from the Beyonce tracklist
 def get_lyrics(artist,song):
@@ -30,6 +33,9 @@ def get_lyrics(artist,song):
         return "Request timed out"
     except Exception as e:
         return "Error occured finding song lyrics"
+    
+def analyze_lyrics(lyrics):
+
             
 #Add lyrics to dataset and create a new file for them. 
 if not os.path.isfile('beyonce_tracks_with_lyrics.csv'):
