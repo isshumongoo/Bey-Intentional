@@ -34,8 +34,9 @@ def get_lyrics(artist,song):
     except Exception as e:
         return "Error occured finding song lyrics"
     
-def analyze_lyrics(lyrics):
-
+def analyze_lyrics(lyrics,sentiment):
+    lyric_analysis = lyric_model.generate_content("Analyze these lyrics: " + lyrics +" Alongside this sentiment score of", sentiment, ". Tell me the message behind the lyrics in this song.")
+    return lyric_analysis.text
             
 #Add lyrics to dataset and create a new file for them. 
 if not os.path.isfile('beyonce_tracks_with_lyrics.csv'):
