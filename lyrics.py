@@ -35,9 +35,13 @@ def get_lyrics(artist,song):
         return "Error occured finding song lyrics"
     
 # #GenAi Analyzes lyrics with the snetiment score and returns that
-def analyze_lyrics(lyrics,sentiment):
-    lyric_analysis = lyric_model.generate_content("Analyze these lyrics: " + lyrics +" Alongside this sentiment score of", sentiment, ". Tell me the message behind the lyrics in this song.")
+def analyze_lyrics(lyrics, sentiment, song_name):
+    # Combine all parts into a single string prompt
+    prompt = f"Analyze these lyrics: {lyrics}. Alongside this sentiment score of {sentiment}. Tell me the message behind the lyrics in this song {song_name}."
+    # Call generate_content with the single string prompt
+    lyric_analysis = lyric_model.generate_content(prompt)
     return lyric_analysis.text
+
             
 # #Add lyrics to dataset and create a new file for them. 
 if not os.path.isfile('beyonce_tracks_with_lyrics.csv'):
