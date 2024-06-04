@@ -19,7 +19,7 @@ def start_on_click():
 def index_button_on_click():
      st.session_state.index_button = True
 def reset_button_on_click():
-     st.experimental_rerun()
+     st.session_state.start_button = False
     
 #Setting CSS file
 with open('bey_style.css') as f:
@@ -36,10 +36,10 @@ def further_find(matches):
         #turn to list, then iterate through using a counter to show user index and the song name
         matches_list = matches.values.tolist()
         for counter, match in enumerate(matches_list, start=1):
-            st.write(f"{counter}: {match[2]}")
+            st.write(f"{counter}: {match[1]}")
 
         #take user input and turn to integer to be used as index
-        index = st.text_input("Type the index of the song in specific you're looking for")
+        index = st.text_input("Type the index of the song in specific you're looking for, then press enter 🤔")
 
         #edge cases
         if index:
@@ -57,11 +57,9 @@ def further_find(matches):
                         return matches.iloc[index - 1]
         else:
             st.write("Please input an index.")
-    #If somehow passes all if statement, return matches
-    return matches
 
 #Title with picture and description
-st.markdown("<h2 style='color:#A5A9B4;font-family: Monaco;'>Bey-Intentional</h2>", unsafe_allow_html=True)
+st.markdown("<h2 style='color:#A5A9B4;font-family: Monaco;'>Bey-Intentional 🐝</h2>", unsafe_allow_html=True)
 
 title1, title2 = st.columns(2)
 with title1:
@@ -70,7 +68,7 @@ with title2:
     st.markdown("<h4 style='color:#A5A9B4;font-family: Monaco;'>Bey-Intentional is a fan-built project dedicated to delving deeper into the world of Beyoncé's music. This project uses data analysis to unlock the hidden meaning within her lyrics. Unfortunately, Cowboy Carter isn't included. :(</h4>", unsafe_allow_html=True)
 
 #user input and buttons with respective functions
-user_song = st.text_input("What song's intent do you want to know?")
+user_song = st.text_input("What song's intent do you want to know?  🎼")
 
 b1,b2 = st.columns(2)
 with b1:
@@ -84,6 +82,8 @@ if not user_song and st.session_state.start_button:
 elif user_song and st.session_state.start_button:
     matches = find_song(user_song,st.session_state.Master_List)
     selected = further_find(matches)
-    if not selected.empty:
-        st.header("Intrepretation of: "+ user_song)
-        print(analyze_lyrics(selected['lyrics'], selected['sentiment'], selected['track_name']))
+    if selected is not None:  # Check if selected is not None before accessing its attributes
+        if not selected.empty:
+            st.header("Interpretation of: " + user_song)
+            analysis = analyze_lyrics(selected['lyrics'], selected['sentiment'], selected['track_name'], "Beyonce")
+            st.write(analysis)

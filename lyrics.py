@@ -17,7 +17,7 @@ except TypeError:
     "Invalid token"
 
 # #Establishing Gemini GenAI
-genai_api_key = os.getenv('GOOGLE_API_KEY')
+genai_api_key = os.getenv('GEN_API_KEY')
 genai.configure(api_key=genai_api_key)
 lyric_model = genai.GenerativeModel('gemini-pro')
 
@@ -35,11 +35,11 @@ def get_lyrics(artist,song):
         return "Error occured finding song lyrics"
     
 # #GenAi Analyzes lyrics with the snetiment score and returns that
-def analyze_lyrics(lyrics, sentiment, song_name):
-    # Combine all parts into a single string prompt
-    prompt = f"Analyze these lyrics: {lyrics}. Alongside this sentiment score of {sentiment}. Tell me the message behind the lyrics in this song {song_name}."
-    # Call generate_content with the single string prompt
-    lyric_analysis = lyric_model.generate_content(prompt)
+def analyze_lyrics(lyrics, sentiment, song_name, artist):
+    # Generate content using the lyric model
+    lyric_analysis = lyric_model.generate_content("Pretend you're an expert music lyric analyst. Please analyze the lyrics of the song " + 
+                                                    song_name + " by " + "artist. \nHere are the lyrics: " + lyrics + " \nHere are the sentiment scores " + sentiment + ". Please return to me a thorough analysis of this song that tells the message of the song.")
+    
     return lyric_analysis.text
 
             
