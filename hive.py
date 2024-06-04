@@ -16,6 +16,12 @@ def start_on_click():
 def reset_on_click():
     st.session_state.reset_button = True
 
+#Setting CSS file
+with open('bey_style.css') as f:
+    		css = f.read()
+
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
 #Title with pictrue and description
 st.markdown("<h2 style='color:#A5A9B4;font-family: Monaco;'>Bey-Intentional</h2>", unsafe_allow_html=True)
 
@@ -27,5 +33,5 @@ with title2:
 
 #user input and buttons with respective functions
 user_song = st.text_input("What song's intent do you want to know?")
-starter = st.button("Start", on_click=start_on_click())
-reseter = st.button("Reset", on_click=reset_on_click())
+starter = st.button("Start", on_click=start_on_click)
+reseter = st.button("Reset", on_click=reset_on_click)
