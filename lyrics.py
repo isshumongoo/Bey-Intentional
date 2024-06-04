@@ -11,7 +11,10 @@ Master_Bey_List = pd.read_csv('beyonce_tracks.csv')
 
 # #Genius API Access token found and APi defined
 genius_token = os.getenv('GENIUS_ACCESS_TOKEN')
-genius = Genius(genius_token)
+try:
+    genius = Genius(genius_token)
+except TypeError:
+    "Invalid token"
 
 # #Establishing Gemini GenAI
 genai_api_key = os.getenv('GOOGLE_API_KEY')
