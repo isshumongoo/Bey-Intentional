@@ -49,7 +49,7 @@ if not os.path.isfile('beyonce_tracks_with_lyrics.csv'):
 Lyric_List = pd.read_csv('beyonce_tracks_with_lyrics.csv')
 
 #Download for nltk and then sentiment analysis
-nltk.download('all')
+nltk.download('vader_lexicon')
 
 #Grabs polarity from the
 def get_sentiment(lyrics):
@@ -57,4 +57,6 @@ def get_sentiment(lyrics):
     return sid.polarity_scores(lyrics)
 
 #Add sentiment score to dataset
-Lyric_List['sentiment'] = Lyric_List.apply(lambda row: get_sentiment(row['lyrics']))
+# Lyric_List['sentiment'] = Lyric_List.apply(lambda row: get_sentiment(row['lyrics']))
+lyrics = " I've been waiting so long, for a love like this. It's a feeling so strong I don't want to exist0"
+print(get_sentiment(lyrics))
