@@ -53,7 +53,7 @@ def get_sentiment(lyrics):
     return sid.polarity_scores(lyrics)
 
 #Add sentiment score to dataset since it does not exist at first
-if 'sentiment' not in Lyric_List.columns.tolist():
+if not os.path.isfile('beyonce_tracks_with_lyrics&sentiment.csv'):
     Lyric_List['sentiment'] = Lyric_List.apply(lambda row: get_sentiment(row['lyrics']),axis=1)
     Lyric_List.to_csv('beyonce_tracks_with_lyrics&sentiment.csv', index=False)
 
@@ -69,3 +69,6 @@ def find_song(user_input, dataset):
     else:
         return matches
     
+song = "Kitty Kat"
+example = find_song(song,Queens_List)
+print(example.iloc[2])
