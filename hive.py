@@ -84,5 +84,6 @@ if not user_song and st.session_state.start_button:
 elif user_song and st.session_state.start_button:
     matches = find_song(user_song,st.session_state.Master_List)
     selected = further_find(matches)
-    st.header("Intrepretation of: "+ user_song)
-    print(analyze_lyrics(selected['lyrics'], selected['sentiment'], selected['track_name']))
+    if not selected.empty:
+        st.header("Intrepretation of: "+ user_song)
+        print(analyze_lyrics(selected['lyrics'], selected['sentiment'], selected['track_name']))
