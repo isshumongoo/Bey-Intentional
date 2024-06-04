@@ -38,7 +38,8 @@ def get_lyrics(artist,song):
 def analyze_lyrics(lyrics, sentiment, song_name, artist):
     # Generate content using the lyric model
     lyric_analysis = lyric_model.generate_content("Pretend you're an expert music lyric analyst. Please analyze the lyrics of the song " + 
-                                                    song_name + " by " + "artist. \nHere are the lyrics: " + lyrics + " \nHere are the sentiment scores " + sentiment + ". Please return to me a thorough analysis of this song that tells the message of the song.")
+                                                    song_name + " by " + "artist. \nHere are the lyrics: " + lyrics + " \nHere are the sentiment scores " + sentiment + 
+                                                    ". Please return to me a thorough analysis of this song that tells the message of the song.")
     
     return lyric_analysis.text
 
